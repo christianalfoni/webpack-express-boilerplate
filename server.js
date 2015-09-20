@@ -1,33 +1,37 @@
-var express = require('express');
-var path = require('path');
-var httpProxy = require('http-proxy');
-var http = require('http');
-var proxy = httpProxy.createProxyServer({
+import express from 'express';
+import path from 'path';
+import httpProxy from 'http-proxy';
+import http from 'http';
+import bundle from './dev-server/bundle.js';
+
+let proxy = httpProxy.createProxyServer({
   changeOrigin: true,
   ws: true
-}); 
-var app = express();
-var isProduction = process.env.NODE_ENV === 'production';
-var port = isProduction ? process.env.PORT : 3000;
-var publicPath = path.resolve(__dirname, 'public');
+});
 
+const app = express();
+const isProduction = process.env.NODE_ENV === 'production';
+const port = isProduction ? process.env.PORT : 3000;
+const publicPath = path.resolve(__dirname, 'public');
+
+// Set public path
 app.use(express.static(publicPath));
 
-app.all('/db/*', function (req, res) {
-  proxy.web(req, res, {
-    target: 'https://glowing-carpet-4534.firebaseio.com/'
-  });
-});
+// TODO: For full stack, set API routes
 
 if (!isProduction) {
 
-  var bundle = require('./server/bundle.js');
+  // Bundle assets
   bundle();
+
+  // Match all HTTP verbs for build to the proxy
   app.all('/build/*', function (req, res) {
     proxy.web(req, res, {
         target: 'http://127.0.0.1:3001'
     });
   });
+
+  // Match all HTTP verbs for socket.io to the proxy
   app.all('/socket.io*', function (req, res) {
     proxy.web(req, res, {
       target: 'http://127.0.0.1:3001'
@@ -37,6 +41,7 @@ if (!isProduction) {
 
   proxy.on('error', function(e) {
     // Just catch it
+    console.error(e);
   });
 
   // We need to use basic HTTP service to proxy
@@ -49,7 +54,7 @@ if (!isProduction) {
 
   server.listen(port, function () {
     console.log('Server running on port ' + port);
-  }); 
+  });
 
 } else {
 
