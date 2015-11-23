@@ -1,16 +1,18 @@
 import React from 'react';
 import styles from './App.css';
+import {Decorator as Cerebral} from 'cerebral-react';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {test: 'foo'};
-  }
+@Cerebral({
+  title: ['title']
+})
+class App extends React.Component {
   render() {
     return (
-      <div className={styles.app}>
-        bar
-      </div>
+      <h1>
+        {this.props.title}
+      </h1>
     );
   }
 }
+
+export default App;

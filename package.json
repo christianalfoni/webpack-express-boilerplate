@@ -26,6 +26,10 @@
     "jscs": "jscs ."
   },
   "dependencies": {
+    "baobab": "^2.1.1",
+    "cerebral": "^0.25.1",
+    "cerebral-baobab": "^0.4.2",
+    "cerebral-react": "^0.6.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
