@@ -40,7 +40,10 @@ module.exports = {
     loaders: [{
       test: /\.js?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: 'babel',
+      query: {
+        "presets": ["es2015", "stage-0", "react"]
+      }
     }, {
       test: /\.json?$/,
       loader: 'json'
