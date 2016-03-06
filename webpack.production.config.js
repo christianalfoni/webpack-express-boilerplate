@@ -12,7 +12,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '/dist/'),
-    filename: '[name]-[hash].min.js'
+    filename: '[name]-[hash].min.js',
+    publicPath: '/'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
