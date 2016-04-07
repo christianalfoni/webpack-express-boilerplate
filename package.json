@@ -21,7 +21,8 @@
   "scripts": {
     "test": "",
     "start": "node server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "build-run": "rimraf dist && export NODE_ENV=production && export PORT=3000 && set NODE_ENV=production && set PORT=3000 && webpack --config ./webpack.production.config.js --progress --profile --colors && node server",
+    "build": "rimraf dist && export NODE_ENV=production && set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
