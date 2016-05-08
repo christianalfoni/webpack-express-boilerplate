@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: [
@@ -37,6 +38,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
+  externals: [nodeExternals()],
   module: {
     loaders: [{
       test: /\.js?$/,
