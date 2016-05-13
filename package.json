@@ -28,7 +28,8 @@
   "dependencies": {
     "babel-cli": "^6.4.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "http-proxy": "^1.13.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
