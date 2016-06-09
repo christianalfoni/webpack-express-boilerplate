@@ -43,7 +43,8 @@ module.exports = {
       test: /\.css$/,
       loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
     }, {
-        test: /\.scss$/, loaders: ["style", "css", "sass"]
+      test: /\.scss$/, 
+      loaders: ["style", "css", "sass"]
     }]
   }
 };
