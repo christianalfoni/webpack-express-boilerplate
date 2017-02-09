@@ -15,7 +15,7 @@
   "css": {
     "allowed_file_extensions": ["css", "scss", "sass", "less", "styl"],
     "end_with_newline": false,
-    "indent_char": " ",r
+    "indent_char": " ",
     "indent_size": 2,
     "newline_between_rules": true,
     "selector_separator": " ",
