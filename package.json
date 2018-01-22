@@ -29,7 +29,8 @@
     "babel-cli": "^6.4.0",
     "babel-core": "^6.22.1",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "express": "^4.13.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
@@ -45,7 +46,6 @@
     "css-loader": "^0.19.0",
     "eslint": "^1.5.0",
     "eslint-plugin-react": "^3.4.2",
-    "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.8.2",
     "html-webpack-plugin": "^1.6.1",
     "jscs": "^2.1.1",
