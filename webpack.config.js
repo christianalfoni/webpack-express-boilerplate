@@ -5,6 +5,10 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: "production",
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
+  },
   devtool: 'eval-source-map',
   entry: [
     'webpack-hot-middleware/client?reload=true',
@@ -23,25 +27,36 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
+    rules: [{
+      test: /\.(js|jsx)?$/,
+      use: ['babel-loader'],
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        "presets": ["react", "es2015", "stage-0", "react-hmre"]
-      }
-    }, {
-      test: /\.json?$/,
-      loader: 'json'
+      include: path.join(__dirname, 'app'),
     }, {
       test: /\.css$/,
-      loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
+      use: [
+        {loader: "style-loader"},
+        {
+          loader: "css-loader",
+          options: {
+           modules: true,
+           localIdentName: '[path][name]__[local]--[hash:base64:5]'
+          }
+        }
+      ],
+      include: path.join(__dirname, 'app')
+    }, {
+      test: /\.(html)$/,
+      use: ['html-loader']
+    }, {
+      test: /\.(json)$/,
+      use: ['json']
     }]
   }
 };
